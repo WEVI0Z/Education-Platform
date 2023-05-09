@@ -70,4 +70,46 @@ class UsersController extends Controller
 
         return redirect()->route("main")->with("message", "Успешный выход из аккаунта");
     }
+
+    function edit(Request $request) {
+        if ($_POST) {
+            $rules = [
+                "full_name" => "required",
+                "password" => "required|confirmed"
+            ];
+
+            $messages = [
+                "full_name.required" => "Поле ФИО является обязательным",
+                "password.required" => "Поле Пароль является обязательным",
+                "password.confirmed" => "Поля паролей не совпадают",
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            $validator->validate();
+
+            $user = User::query()->where("login", "=", Auth::user()->login)->get()[0];
+
+            $user->update([
+                "full_name" => $request->full_name,
+                "password" => Hash::make($request->password),
+            ]);
+
+            return redirect()->route("main")->with("message", "Внесение изменений прошло успешно");
+        }
+
+        $title = "Настройки аккаунта";
+
+        return view("users.edit", compact("title"));
+    }
+
+    function delete() {
+        $user = User::query()->where("login", "=", Auth::user()->login)->get()[0];
+
+        Auth::logout();
+
+        $user->delete();
+
+        return redirect()->route("main")->with("message", "Удаление аккаунта прошло успешно");
+    }
 }

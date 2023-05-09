@@ -49,7 +49,7 @@
 
         <ul class="header__buttons">
             @if(\Illuminate\Support\Facades\Auth::user())
-                <li><a href="" class="header__button button">Аккаунт</a></li>
+                <li><a href="{{route("edit-account")}}" class="header__button button">Аккаунт</a></li>
                 <li><a href="{{route("logout")}}" class="header__button button">Выйти</a></li>
                 @if(\Illuminate\Support\Facades\Auth::user()->is_admin)
                     <li><a href="" class="header__button button">Панель администратора</a></li>
