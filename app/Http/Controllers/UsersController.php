@@ -112,4 +112,12 @@ class UsersController extends Controller
 
         return redirect()->route("main")->with("message", "Удаление аккаунта прошло успешно");
     }
+
+    function showProfile(Request $request) {
+        $user = User::query()->find($request->route("id"));
+
+        $title = $user->full_name;
+
+        return view("users.profile", compact("title", "user"));
+    }
 }

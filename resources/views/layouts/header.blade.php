@@ -31,6 +31,8 @@
 
     .header__button {
         margin-right: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 </style>
 
@@ -42,9 +44,9 @@
 
         <ul class="header__links">
             <li><a href="{{route("main")}}" class="header__link">Главная</a></li>
-            <li><a href="" class="header__link">Теория</a></li>
-            <li><a href="" class="header__link">Практика</a></li>
-            <li><a href="" class="header__link">Тесты</a></li>
+            <li><a href="{{route("docs", ["category" => "Теория"])}}" class="header__link">Теория</a></li>
+            <li><a href="{{route("docs", ["category" => "Практика"])}}" class="header__link">Практика</a></li>
+            <li><a href="{{route("docs", ["category" => "Тесты"])}}" class="header__link">Тесты</a></li>
         </ul>
 
         <ul class="header__buttons">
@@ -52,7 +54,7 @@
                 <li><a href="{{route("edit-account")}}" class="header__button button">Аккаунт</a></li>
                 <li><a href="{{route("logout")}}" class="header__button button">Выйти</a></li>
                 @if(\Illuminate\Support\Facades\Auth::user()->is_admin)
-                    <li><a href="" class="header__button button">Панель администратора</a></li>
+                    <li><a href="{{route("admin")}}" class="header__button button">Панель администратора</a></li>
                 @endif
             @else
                 <li><a href="{{route("login")}}" class="header__button button">Вход</a></li>
