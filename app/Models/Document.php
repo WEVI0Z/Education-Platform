@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Document extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "name",
+        "path",
+        "category",
+    ];
+
+    function statistics() {
+        return $this->hasMany(Statistic::class);
+    }
 }
