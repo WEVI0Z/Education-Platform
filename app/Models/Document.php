@@ -14,4 +14,8 @@ class Document extends Model
         "path",
         "category",
     ];
+
+    function statistics() {
+        return $this->hasMany(Statistic::class);
+    }
 }

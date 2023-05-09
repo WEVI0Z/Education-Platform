@@ -122,14 +122,14 @@
         </h2>
 
         <ul class="stats__list">
-            <li class="stats__item"><a href="" class="stats__profile">Гаркавый Алексей Петрович</a> просмотрел/a <a href="" class="stats__doc"> документ с таким то названием</a></li>
-            <li class="stats__item"><a href="" class="stats__profile">Гаркавый Алексей Петрович</a> просмотрел/a <a href="" class="stats__doc"> документ с таким то названием</a></li>
-            <li class="stats__item"><a href="" class="stats__profile">Гаркавый Алексей Петрович</a> просмотрел/a <a href="" class="stats__doc"> документ с таким то названием</a></li>
-            <li class="stats__item"><a href="" class="stats__profile">Гаркавый Алексей Петрович</a> просмотрел/a <a href="" class="stats__doc"> документ с таким то названием</a></li>
-            <li class="stats__item"><a href="" class="stats__profile">Гаркавый Алексей Петрович</a> просмотрел/a <a href="" class="stats__doc"> документ с таким то названием</a></li>
+            @foreach($stats as $stat)
+                <li class="stats__item">
+                    <a href="{{route("profile", ["id" => $stat->user_id])}}" class="stats__profile">{{$stat->user->full_name}}</a> просмотрел/a <a href="{{asset(\App\Models\Document::query()->find($stat->document_id)->path)}}" class="stats__doc"> {{\App\Models\Document::query()->find($stat->document_id)->name}}</a>
+                </li>
+            @endforeach
         </ul>
 
-        <a href="#" class="button">
+        <a href="{{route("show-stats")}}" class="button">
             Показать всю статистику
         </a>
     </section>

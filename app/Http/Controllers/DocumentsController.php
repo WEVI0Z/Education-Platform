@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Document;
+use App\Models\Statistic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class DocumentsController extends Controller
@@ -11,9 +13,11 @@ class DocumentsController extends Controller
     function showPanel() {
         $documents = Document::query()->orderByDesc("id")->limit(5)->get();
 
+        $stats = Statistic::query()->orderByDesc("id")->limit(5)->get();
+
         $title = "Панель администратора";
 
-        return view("admin.panel", compact("title", "documents"));
+        return view("admin.panel", compact("title", "documents", "stats"));
     }
 
     function showDocs() {

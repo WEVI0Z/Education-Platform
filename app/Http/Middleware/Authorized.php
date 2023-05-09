@@ -19,7 +19,7 @@ class Authorized
         if(Auth::user()) {
             return $next($request);
         } else {
-            return redirect()->route("main")->with("error", "Недостаточно прав для данного действия");
+            return redirect()->route("main")->with("error", "Необходимо быть авторизованным пользователем");
         }
     }
 }

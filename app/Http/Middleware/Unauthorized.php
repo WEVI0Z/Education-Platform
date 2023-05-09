@@ -19,7 +19,7 @@ class Unauthorized
         if(!Auth::user()) {
             return $next($request);
         } else {
-            return redirect()->route("login")->with("error", "Необходимо быть авторизованным пользователем");
+            return redirect()->route("login")->with("error", "Вы уже авторизованы");
         }
     }
 }

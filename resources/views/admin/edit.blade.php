@@ -87,7 +87,7 @@
             </label>
         </div>
         <button type="submit" class="form__submit button">
-            Создать
+            Внести изменения
         </button>
     </form>
 @endsection

@@ -89,26 +89,34 @@
     <section class="docs">
         <div class="docs__main">
             <h2 class="docs__title">
-                {{$documents[0]->category}}:
+                {{$documents[0]->category ?? "Документы"}}:
             </h2>
-            <span class="docs__category" style="display: none;">{{$documents[0]->category}}</span>
+            <span class="docs__category" style="display: none">
+                {{$documents[0]->category ?? "Документы"}}
+            </span>
             <label for="search" class="docs__label">
                 <input type="search" name="search" id="search" class="docs__input" placeholder="Поиск...">
             </label>
         </div>
 
-        <ul class="docs__list">
-            @foreach($documents as $document)
-                <li class="docs__item doc">
-                    <h3 class="doc__title">{{$document->name}}</h3>
-                    <p class="doc__date">{{$document->created_at}}</p>
-                    <p class="doc__type">{{$document->category}}</p>
-                    <div class="doc__buttons">
-                        <a href="{{asset($document->path)}}" class="doc__button button">Открыть</a>
-                    </div>
-                </li>
-            @endforeach
-        </ul>
+        @if(count($documents))
+            <ul class="docs__list">
+                @foreach($documents as $document)
+                    <li class="docs__item doc">
+                        <h3 class="doc__title">{{$document->name}}</h3>
+                        <p class="doc__date">{{$document->created_at}}</p>
+                        <p class="doc__type">{{$document->category}}</p>
+                        <div class="doc__buttons">
+                            <a href="{{route("open", ["id" => $document->id])}}" class="doc__button button">Открыть</a>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        @else
+            <p class="docs__span">
+                Документов выбранного типа пока не было добавлено
+            </p>
+        @endif
 
         <a href="{{route("admin-create")}}" class="docs__button button">Создать новый</a>
     </section>
@@ -143,7 +151,7 @@
                         <p class="doc__date">${humanDate}</p>
                         <p class="doc__type">${doc.category}</p>
                         <div class="doc__buttons">
-                            <a href="{{asset("")}}${doc.path}" class="doc__button button">Открыть</a>
+                            <a href="{{asset("open/")}}${doc.id}" class="doc__button button">Открыть</a>
                         </div>
                     </li>
                 `;
