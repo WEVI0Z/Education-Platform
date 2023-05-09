@@ -32,14 +32,14 @@ class DocumentsController extends Controller
         if ($_POST) {
             $rules = [
                 "name" => "required|unique:documents",
-                "file" => "required|mimes:docx",
+                "file" => "required|mimes:docx,pdf,html",
             ];
 
             $messages = [
                 "name.required" => "Название обязательно",
                 "file.required" => "Файл обязателен",
                 "name.unique" => "Документ с таким названием уже существует",
-                "file.mimes" => "Файл должен быть формата docx",
+                "file.mimes" => "Файл должен быть формата docx, pdf или html",
             ];
 
             $validator = Validator::make($request->all(), $rules, $messages);

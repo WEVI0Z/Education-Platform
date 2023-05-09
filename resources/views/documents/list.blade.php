@@ -117,8 +117,6 @@
                 Документов выбранного типа пока не было добавлено
             </p>
         @endif
-
-        <a href="{{route("admin-create")}}" class="docs__button button">Создать новый</a>
     </section>
 
     <script>

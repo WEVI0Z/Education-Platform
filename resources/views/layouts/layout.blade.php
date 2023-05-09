@@ -16,6 +16,13 @@
         margin: 0;
         padding: 0;
         font-family: 'Montserrat', sans-serif;
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    main {
+        flex-grow: 1;
     }
 
     a {
@@ -69,5 +76,7 @@
     <main class="main">
         @yield("content")
     </main>
+
+    @include("layouts.footer")
 </body>
 </html>
