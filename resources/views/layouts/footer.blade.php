@@ -4,6 +4,9 @@
 
         background-color: darkslategrey;
     }
+    .footer__title {
+        align-self: center;
+    }
 
     .footer__nav {
         padding: 0 20px;
