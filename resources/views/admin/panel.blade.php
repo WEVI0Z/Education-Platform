@@ -8,6 +8,7 @@
             display: flex;
             justify-content: flex-start;
             flex-direction: column;
+            padding-bottom: 20px;
         }
 
         .stats__list {
@@ -124,7 +125,7 @@
         <ul class="stats__list">
             @foreach($stats as $stat)
                 <li class="stats__item">
-                    <a href="{{route("profile", ["id" => $stat->user_id])}}" class="stats__profile">{{$stat->user->full_name}}</a> просмотрел/a <a href="{{asset(\App\Models\Document::query()->find($stat->document_id)->path)}}" class="stats__doc"> {{\App\Models\Document::query()->find($stat->document_id)->name}}</a>
+                    <a href="{{route("profile", ["id" => $stat->user_id])}}" class="stats__profile">{{$stat->user->full_name}}</a> просмотрел/a <a href="{{asset(\App\Models\Document::query()->find($stat->document_id)->path)}}" class="stats__doc"> {{\App\Models\Document::query()->find($stat->document_id)->name}}</a>  {{$stat->created_at->diffForHumans()}}
                 </li>
             @endforeach
         </ul>

@@ -114,10 +114,12 @@ class UsersController extends Controller
     }
 
     function showProfile(Request $request) {
-        $user = User::query()->find($request->route("id"));
+        $user = User::query()->with("statistics")->find($request->route("id"));
+
+        $stats = $user->statistics;
 
         $title = $user->full_name;
 
-        return view("users.profile", compact("title", "user"));
+        return view("users.profile", compact("title", "user", "stats"));
     }
 }

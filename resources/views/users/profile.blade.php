@@ -68,11 +68,9 @@
         </p>
 
         <ul class="stats__list">
-            <li class="stats__item">Просмотрел/a <a href="" class="stats__doc"> документ с таким то названием</a></li>
-            <li class="stats__item">Просмотрел/a <a href="" class="stats__doc"> документ с таким то названием</a></li>
-            <li class="stats__item">Просмотрел/a <a href="" class="stats__doc"> документ с таким то названием</a></li>
-            <li class="stats__item">Просмотрел/a <a href="" class="stats__doc"> документ с таким то названием</a></li>
-            <li class="stats__item">Просмотрел/a <a href="" class="stats__doc"> документ с таким то названием</a></li>
+            @foreach($stats as $stat)
+                <li class="stats__item">Просмотрел/a <a href="{{asset($stat->document->path)}}" class="stats__doc"> {{$stat->document->name}}</a> {{$stat->created_at->diffForHumans()}}</li>
+            @endforeach
         </ul>
     </section>
 @endsection

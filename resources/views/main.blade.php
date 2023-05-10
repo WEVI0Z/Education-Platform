@@ -20,7 +20,7 @@
         }
 
         .info__right {
-            max-width: 600px;
+            max-width: 500px;
             padding: 0 20px;
         }
 
@@ -40,7 +40,7 @@
         .stats__item {
             margin-bottom: 10px;
             position: relative;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .stats__item::before {
@@ -155,7 +155,7 @@
             <p class="info__description">
                 Дисциплина “Современнные системы программирования” ориентирована на обучение базовым знаниям, умениям и навыкам в области программирования. Изучаемые темы базируются на использовании технологий,новейшего программного обеспечения и технического обеспечения компьютеров
             </p>
-            <a href="" class="info__button button">
+            <a href="{{asset("files/Cовременные системы программирования, 2021.pdf")}}" class="info__button button">
                 Узнать больше о предмете
             </a>
         </div>
@@ -167,7 +167,7 @@
             <ul class="stats__list">
                 @foreach($stats as $stat)
                     <li class="stats__item">
-                        <a href="{{route("profile", ["id" => $stat->user_id])}}" class="stats__profile">{{$stat->user->full_name}}</a> просмотрел/a <a href="{{asset(\App\Models\Document::query()->find($stat->document_id)->path)}}" class="stats__doc"> {{\App\Models\Document::query()->find($stat->document_id)->name}}</a>
+                        <a href="{{route("profile", ["id" => $stat->user_id])}}" class="stats__profile">{{$stat->user->full_name}}</a> просмотрел/a <a href="{{asset(\App\Models\Document::query()->find($stat->document_id)->path)}}" class="stats__doc"> {{\App\Models\Document::query()->find($stat->document_id)->name}}</a> {{$stat->created_at->diffForHumans()}}
                     </li>
                 @endforeach
             </ul>

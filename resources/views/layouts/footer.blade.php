@@ -52,6 +52,7 @@
     <nav class="footer__nav">
         <h1 class="footer__title">
             <a href="{{route("main")}}">Учебная система</a>
+            <a class="footer__name" style="font-size: 14px; text-decoration: underline" href="mailto:wevioz@mail.ru">Связаться с нами</a>
         </h1>
 
         <div class="footer__block">
